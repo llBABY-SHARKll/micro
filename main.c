@@ -106,7 +106,8 @@ else if(* up_or_down==0)
 
 int main(void){
 DDRC=0x00;/*PORTC is input*/
-DDRA=0xFF;//PORTB is Output
+DDRA=0xFF;//PORTa is Output
+DDRB=0x00;
 PORTC=0x00;/*PORTC is pull down*/
 position=&x;
 stop=&l;
@@ -120,7 +121,7 @@ sei();			/* Enable Global Interrupt */
     /* Replace with your application code */
     while (1) 
     {
-		if (PINC==0x01)
+		if (PINC==0x01&&PINB!=0x04)
 		{
 			if (*position==0)
 			{
@@ -143,7 +144,7 @@ sei();			/* Enable Global Interrupt */
 			}
 		
 		}
-			 if (PINC==0x02)
+			 if (PINC==0x02&&PINB!=0x04)
 			{
 				if ( *position==0)
 				{
@@ -164,7 +165,7 @@ sei();			/* Enable Global Interrupt */
 				}
 			}
 			
-			 if (PINC==0x04)
+			 if (PINC==0x04&&PINB!=0x04)
 			{
 				if ( *position==0)
 				{
