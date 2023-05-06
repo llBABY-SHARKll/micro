@@ -73,7 +73,7 @@ void step_down(int x,int* y)
 ISR(INT0_vect)
 {
 	PORTA= 0x00;
- if (* up_or_down==0)
+ if (* up_or_down==1)
  {
 	int y=15-*position;
 	if(y<0)
@@ -87,7 +87,7 @@ ISR(INT0_vect)
 		*stop=1;
 	}
  }
-else if(* up_or_down==1)
+else if(* up_or_down==0)
 {
 	int x=*position-15;
 	if (x<0)
@@ -143,7 +143,7 @@ sei();			/* Enable Global Interrupt */
 			}
 		
 		}
-			else if (PINC==0x02)
+			 if (PINC==0x02)
 			{
 				if ( *position==0)
 				{
@@ -164,7 +164,7 @@ sei();			/* Enable Global Interrupt */
 				}
 			}
 			
-			else if (PINC==0x04)
+			 if (PINC==0x04)
 			{
 				if ( *position==0)
 				{
