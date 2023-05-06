@@ -11,6 +11,7 @@
 #include <avr/interrupt.h>
 #include <string.h>
 #define F_CPU 16000000UL
+int l =0;
  int x=0;
  int* position;
 int* up_or_down;//1 =move down 0=move up
@@ -24,7 +25,7 @@ void step_up(int x,int* y)
 	{
 		if (*stop==1)
 		{
-		
+		PORTA=0b00001111;
 			break;
 		}
 		 else if (*stop==0)
@@ -50,7 +51,7 @@ void step_down(int x,int* y)
 		if (*stop==1)
 		{
 			
-			
+				PORTA=0b00001111;
 			break;
 		}
 	    else if (*stop==0)
@@ -108,7 +109,7 @@ DDRC=0x00;/*PORTC is input*/
 DDRA=0xFF;//PORTB is Output
 PORTC=0x00;/*PORTC is pull down*/
 position=&x;
-*stop=0;
+stop=&l;
 GICR = 1<<INT0;		/* Enable INT0*/
 MCUCR = 1<<ISC01 | 1<<ISC00;  /* Trigger INT0 on rising edge */
 
